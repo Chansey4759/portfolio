@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#17130f">
+    <meta
+      name="description"
+      content="Calculate battle damage in Centurion Showdown."
+    >
+    <title>Centurion Showdown — Damage Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="#top" aria-label="Centurion Showdown damage calculator home">
+          <span class="brand-mark" aria-hidden="true">CS</span>
+          <span class="brand-name">Centurion <span>Showdown</span></span>
+        </a>
+        <span class="header-note">Centurion Hub <span aria-hidden="true">✦</span></span>
+      </header>
+
+      <section class="intro" id="top" aria-labelledby="page-title">
+        <p class="eyebrow">Game made by Isaac!</p>
+        <h1 id="page-title">Damage <span>calculator</span></h1>
+        <p class="intro-copy">
+          Set your attack, choose your elements, and see how much damage gets through.
+        </p>
+      </section>
+
+      <div class="calculator-layout">
+        <form class="calculator-card" id="calculator-form">
+          <section class="form-section" aria-labelledby="attacker-heading">
+            <div class="section-heading">
+              <span class="section-number" aria-hidden="true">01</span>
+              <div>
+                <h2 id="attacker-heading">Your attack</h2>
+                <p>Enter your stat and up to two attacking elements.</p>
+              </div>
+            </div>
+
+            <label class="field stat-field" for="attack-stat">
+              <span class="field-label">ATK <span class="required-mark" aria-hidden="true">*</span></span>
+              <span class="number-wrap">
+                <input
+                  id="attack-stat"
+                  name="attack"
+                  type="number"
+                  min="0"
+                  step="1"
+                  inputmode="numeric"
+                  placeholder="e.g. 100"
+                  required
+                >
+                <span class="stat-unit" aria-hidden="true">STAT</span>
+              </span>
+            </label>
+
+            <div class="element-grid">
+              <label class="field" for="attack-element-1">
+                <span class="field-label">Attacking element</span>
+                <select id="attack-element-1" name="attackElement1"></select>
+              </label>
+              <label class="field" for="attack-element-2">
+                <span class="field-label">Second attacking element <span class="optional-mark">OPTIONAL</span></span>
+                <select id="attack-element-2" name="attackElement2"></select>
+              </label>
+            </div>
+          </section>
+
+          <div class="section-divider" aria-hidden="true"><span>VS</span></div>
+
+          <section class="form-section" aria-labelledby="defender-heading">
+            <div class="section-heading">
+              <span class="section-number" aria-hidden="true">02</span>
+              <div>
+                <h2 id="defender-heading">Your opponent</h2>
+                <p>Enter their defense and up to four defending elements.</p>
+              </div>
+            </div>
+
+            <label class="field stat-field" for="defense-stat">
+              <span class="field-label">DEF <span class="required-mark" aria-hidden="true">*</span></span>
+              <span class="number-wrap">
+                <input
+                  id="defense-stat"
+                  name="defense"
+                  type="number"
+                  min="0"
+                  step="1"
+                  inputmode="numeric"
+                  placeholder="e.g. 25"
+                  required
+                >
+                <span class="stat-unit" aria-hidden="true">STAT</span>
+              </span>
+            </label>
+
+            <div class="element-grid defense-grid">
+              <label class="field" for="defense-element-1">
+                <span class="field-label">Defending element 1</span>
+                <select id="defense-element-1" name="defenseElement1"></select>
+              </label>
+              <label class="field" for="defense-element-2">
+                <span class="field-label">Defending element 2 <span class="optional-mark">OPTIONAL</span></span>
+                <select id="defense-element-2" name="defenseElement2"></select>
+              </label>
+              <label class="field" for="defense-element-3">
+                <span class="field-label">Defending element 3 <span class="optional-mark">OPTIONAL</span></span>
+                <select id="defense-element-3" name="defenseElement3"></select>
+              </label>
+              <label class="field" for="defense-element-4">
+                <span class="field-label">Defending element 4 <span class="optional-mark">OPTIONAL</span></span>
+                <select id="defense-element-4" name="defenseElement4"></select>
+              </label>
+            </div>
+          </section>
+
+          <div class="form-actions">
+            <button class="calculate-button" type="submit">
+              <span>Calculate damage</span>
+              <span class="button-arrow" aria-hidden="true">→</span>
+            </button>
+            <button class="reset-button" type="reset">Clear all</button>
+          </div>
+        </form>
+
+        <aside class="result-card" id="result-card" aria-live="polite" aria-atomic="true" hidden>
+          <p class="result-kicker" id="result-kicker">Battle result</p>
+          <p class="result-label">Estimated damage</p>
+          <p class="damage-total" id="damage-total">0</p>
+          <p class="result-summary" id="result-summary"></p>
+          <div class="result-details" id="result-details"></div>
+        </aside>
+      </div>
+
+      <p class="rules-note">
+        Element advantages and resistances stack. If the attack is effective, DEF can absorb one advantage step.
+        Immunities always reduce damage to zero.
+      </p>
+
+      <footer class="site-footer">
+        <span>Calculator made by Chansey4759!</span>
+        <a href="../../projects.html">Back to projects <span aria-hidden="true">↗</span></a>
+      </footer>
+    </main>
+  </body>
+</html>
