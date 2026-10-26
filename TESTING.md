@@ -28,6 +28,8 @@ Live site: https://chansey4759.github.io/portfolio/
 
 ### Crazy Button checks
 
+Latest configuration: 40ms between changes (25 updates per second). Character spans and their text wrappers remain transparent, revealing their containing section's background. Earlier 200ms results below are historical; the new interval and transparency have source checks only, with browser/live retesting Not run. For retesting, intercept the timer, assert a 40ms interval, invoke one tick, and verify that character spans have text color classes but no background color classes, wrappers have no rainbow classes, and containing elements still receive background classes.
+
 Character-color update: local headless Edge checks passed for one span per heading character, unchanged text, independent random character color classes, preserved email link, original text-node restoration on stop, and button reset. Timer interception prevented visible flashing. Manual layout and live verification of this update remain Not run.
 
 Local headless Edge check on October 26, 2026: Pass for the first warning, second expanded warning, third-press activation, 200ms interval, rainbow class assignment, unchanged stop-control colors, stopping/resetting, and Escape. The interval was intercepted and invoked manually so no flashing was displayed during testing. Source checks confirmed one footer button on each of the five portfolio pages and no calculator changes. Live testing, reduced-motion emulation, physical keyboard activation, and background-tab behavior are Not run.

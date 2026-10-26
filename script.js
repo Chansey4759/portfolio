@@ -71,7 +71,9 @@ function randomizeCrazyColors() {
   for (const element of crazyElements) {
     element.classList.remove(...crazyClasses);
     element.classList.add(`rainbow-text-${Math.floor(Math.random() * 7)}`);
-    element.classList.add(`rainbow-background-${Math.floor(Math.random() * 7)}`);
+    if (!element.classList.contains('crazy-character')) {
+      element.classList.add(`rainbow-background-${Math.floor(Math.random() * 7)}`);
+    }
   }
 }
 
@@ -89,6 +91,7 @@ function wrapCrazyCharacters() {
     ? new Intl.Segmenter(undefined, { granularity: 'grapheme' }) : null;
   for (const original of textNodes) {
     const wrapper = document.createElement('span');
+    wrapper.className = 'crazy-text-wrapper';
     const characters = segmenter
       ? Array.from(segmenter.segment(original.textContent), item => item.segment)
       : Array.from(original.textContent);
@@ -121,10 +124,10 @@ crazyButton.addEventListener('click', () => {
     // Keep the stop control readable. Color changes never alter the saved theme.
     wrapCrazyCharacters();
     crazyElements = [document.body, ...document.body.querySelectorAll('*')]
-      .filter(element => !element.matches('script, .crazy-button'));
+      .filter(element => !element.matches('script, .crazy-button, .crazy-text-wrapper'));
     crazyButton.textContent = 'Stop Crazy Colors';
     crazyButton.setAttribute('aria-pressed', 'true');
-    crazyTimer = window.setInterval(randomizeCrazyColors, 200);
+    crazyTimer = window.setInterval(randomizeCrazyColors, 40);
   }
 });
 document.addEventListener('keydown', event => {
