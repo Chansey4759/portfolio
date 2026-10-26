@@ -28,6 +28,8 @@ Live site: https://chansey4759.github.io/portfolio/
 
 ### Crazy Button checks
 
+Brand position fix: local Edge checks passed at 390px and 1280px. The first name character's text coordinates and logo width matched before and during activation; stopping restored the original name text node. Flashing timer was intercepted. The initial test incorrectly selected the TP logo character; corrected to measure the name's direct wrapper. Live verification is pending.
+
 Latest configuration: 40ms between changes (25 updates per second). Character spans and their text wrappers remain transparent, revealing their containing section's background. Earlier 200ms results below are historical; the new interval and transparency have source checks only, with browser/live retesting Not run. For retesting, intercept the timer, assert a 40ms interval, invoke one tick, and verify that character spans have text color classes but no background color classes, wrappers have no rainbow classes, and containing elements still receive background classes.
 
 Character-color update: local headless Edge checks passed for one span per heading character, unchanged text, independent random character color classes, preserved email link, original text-node restoration on stop, and button reset. Timer interception prevented visible flashing. Manual layout and live verification of this update remain Not run.
