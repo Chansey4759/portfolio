@@ -50,7 +50,7 @@ let crazyTimer = null;
 let crazyElements = [];
 let crazyTextNodes = [];
 const crazyClasses = Array.from({ length: 7 }, (_, index) => [
-  `rainbow-text-${index}`, `rainbow-background-${index}`,
+  `rainbow-text-${index}`, `rainbow-background-${index}`, `rainbow-image-${index}`,
 ]).flat();
 
 function stopCrazyColors() {
@@ -73,6 +73,9 @@ function randomizeCrazyColors() {
     element.classList.add(`rainbow-text-${Math.floor(Math.random() * 7)}`);
     if (!element.classList.contains('crazy-character')) {
       element.classList.add(`rainbow-background-${Math.floor(Math.random() * 7)}`);
+    }
+    if (element.tagName === 'IMG') {
+      element.classList.add(`rainbow-image-${Math.floor(Math.random() * 7)}`);
     }
   }
 }

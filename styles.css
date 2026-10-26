@@ -69,6 +69,16 @@ main > p:not(.eyebrow) { max-width: 65ch; color: var(--muted); font-size: 1.1rem
 .home-links a::after { content: "↗"; color: var(--accent); font-size: 1.4rem; }
 .home-links a:hover { border-color: var(--accent); background: var(--accent-soft); }
 .project-image { width: 100%; height: 210px; object-fit: cover; border-radius: .6rem; margin-bottom: 1.2rem; }
+.page-photo { margin: 2rem 0; }
+.page-photo img { display: block; width: 100%; height: clamp(180px, 28vw, 340px); object-fit: cover; border: 1px solid var(--border); border-radius: 1rem; box-shadow: var(--shadow); }
+.page-photo figcaption { margin-top: .6rem; color: var(--muted); font-size: .75rem; }
+.rainbow-image-0 { filter: hue-rotate(0deg) saturate(2); }
+.rainbow-image-1 { filter: hue-rotate(50deg) saturate(2); }
+.rainbow-image-2 { filter: hue-rotate(100deg) saturate(2); }
+.rainbow-image-3 { filter: hue-rotate(150deg) saturate(2); }
+.rainbow-image-4 { filter: hue-rotate(200deg) saturate(2); }
+.rainbow-image-5 { filter: hue-rotate(250deg) saturate(2); }
+.rainbow-image-6 { filter: hue-rotate(300deg) saturate(2); }
 .placeholder { border-style: dashed; box-shadow: none; }
 .placeholder h2 { color: var(--muted); font-size: 1rem; overflow-wrap: anywhere; }
 .featured-project { border-top: 4px solid var(--accent); }
