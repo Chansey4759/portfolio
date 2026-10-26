@@ -48,6 +48,7 @@ const crazyWarning = "WARNING, USING THE BUTTON IS NOT FOR IF YOU HAVE EPILEPSY,
 let crazyPresses = 0;
 let crazyTimer = null;
 let crazyElements = [];
+let crazyTextNodes = [];
 const crazyClasses = Array.from({ length: 7 }, (_, index) => [
   `rainbow-text-${index}`, `rainbow-background-${index}`,
 ]).flat();
@@ -57,6 +58,10 @@ function stopCrazyColors() {
   crazyTimer = null;
   for (const element of crazyElements) element.classList.remove(...crazyClasses);
   crazyElements = [];
+  for (const { wrapper, original } of crazyTextNodes) {
+    if (wrapper.isConnected) wrapper.replaceWith(original);
+  }
+  crazyTextNodes = [];
   crazyPresses = 0;
   crazyButton.textContent = 'Crazy Button';
   crazyButton.setAttribute('aria-pressed', 'false');
@@ -67,6 +72,34 @@ function randomizeCrazyColors() {
     element.classList.remove(...crazyClasses);
     element.classList.add(`rainbow-text-${Math.floor(Math.random() * 7)}`);
     element.classList.add(`rainbow-background-${Math.floor(Math.random() * 7)}`);
+  }
+}
+
+function wrapCrazyCharacters() {
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  const textNodes = [];
+  while (walker.nextNode()) {
+    const node = walker.currentNode;
+    if (node.textContent.trim() && !node.parentElement.closest('script, style, button, textarea, select')) {
+      textNodes.push(node);
+    }
+  }
+  // Keep emoji and combined characters intact when supported by the browser.
+  const segmenter = typeof Intl.Segmenter === 'function'
+    ? new Intl.Segmenter(undefined, { granularity: 'grapheme' }) : null;
+  for (const original of textNodes) {
+    const wrapper = document.createElement('span');
+    const characters = segmenter
+      ? Array.from(segmenter.segment(original.textContent), item => item.segment)
+      : Array.from(original.textContent);
+    for (const character of characters) {
+      const span = document.createElement('span');
+      span.className = 'crazy-character';
+      span.textContent = character;
+      wrapper.append(span);
+    }
+    original.replaceWith(wrapper);
+    crazyTextNodes.push({ wrapper, original });
   }
 }
 
@@ -86,6 +119,7 @@ crazyButton.addEventListener('click', () => {
     stopCrazyColors();
   } else {
     // Keep the stop control readable. Color changes never alter the saved theme.
+    wrapCrazyCharacters();
     crazyElements = [document.body, ...document.body.querySelectorAll('*')]
       .filter(element => !element.matches('script, .crazy-button'));
     crazyButton.textContent = 'Stop Crazy Colors';
