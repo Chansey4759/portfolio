@@ -72,6 +72,8 @@ main > p:not(.eyebrow) { max-width: 65ch; color: var(--muted); font-size: 1.1rem
 .page-photo { margin: 2rem 0; }
 .page-photo img { display: block; width: 100%; height: clamp(180px, 28vw, 340px); object-fit: cover; border: 1px solid var(--border); border-radius: 1rem; box-shadow: var(--shadow); }
 .page-photo figcaption { margin-top: .6rem; color: var(--muted); font-size: .75rem; }
+.discord-photo { max-width: 650px; }
+.discord-photo img { height: 180px; object-fit: contain; padding: 3rem; background: #5865f2; }
 .rainbow-image-0 { filter: hue-rotate(0deg) saturate(2); }
 .rainbow-image-1 { filter: hue-rotate(50deg) saturate(2); }
 .rainbow-image-2 { filter: hue-rotate(100deg) saturate(2); }

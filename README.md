@@ -30,6 +30,8 @@ The portfolio uses existing Pexels photos downloaded as optimized 1200 × 600 JP
 
 Usage terms: [Pexels License](https://www.pexels.com/license/).
 
+The Projects page no longer displays the stock gaming banner; the photo remains in the homepage story. The Contact page uses `assets/images/discord-logo.svg`, downloaded from [Discord's official brand assets](https://discord.com/branding), instead of the stock workspace photo. The workspace photo remains in the homepage story. Discord owns its logo.
+
 ## Featured project
 
 The Projects page includes a local copy of the [Centurion Showdown damage calculator](https://github.com/Chansey4759/Centurion-Showdown-Coding-services-) from source commit `533c4a44f8201a8892ecb2e35046f6a5ff29292f`, hosted at `projects/Centurion-Showdown-Coding-services-/`. Its poster is resized and compressed for the web. The original credits for Isaac's game and Chansey4759's calculator are preserved.
