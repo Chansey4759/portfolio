@@ -26,5 +26,11 @@ Live site: https://chansey4759.github.io/portfolio/
 
 ## Fix and retest log
 
+### Crazy Button checks
+
+Local headless Edge check on October 26, 2026: Pass for the first warning, second expanded warning, third-press activation, 200ms interval, rainbow class assignment, unchanged stop-control colors, stopping/resetting, and Escape. The interval was intercepted and invoked manually so no flashing was displayed during testing. Source checks confirmed one footer button on each of the five portfolio pages and no calculator changes. Live testing, reduced-motion emulation, physical keyboard activation, and background-tab behavior are Not run.
+
+To retest, activate the button once and twice and verify the exact requested warnings without color changes. Intercept the interval in a browser test before the third activation; verify the 200ms interval, invoke one tick, then stop using the button and Escape in separate runs. Confirm original theme colors return. With reduced motion enabled, the third activation must show the disabled notice instead. Leaving the page or hiding its tab should reset the effect. Never mark live results as passed based on local checks.
+
 - October 26: Initial responsive harness flagged desktop navigation's hidden attribute after changing from phone width. Added a desktop CSS visibility safeguard and checked computed visibility rather than the attribute alone. Retest passed on all five pages.
 - Final grading tests must be run on the deployed site. Preserve failed results and add the fix and retest date rather than overwriting failures.

@@ -41,3 +41,65 @@ document.addEventListener('keydown', (event) => {
     menuToggle.focus();
   }
 });
+
+const crazyButton = document.querySelector('.crazy-button');
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const crazyWarning = "WARNING, USING THE BUTTON IS NOT FOR IF YOU HAVE EPILEPSY, IF YOU DO DON'T PRESS IT AGAIN!";
+let crazyPresses = 0;
+let crazyTimer = null;
+let crazyElements = [];
+const crazyClasses = Array.from({ length: 7 }, (_, index) => [
+  `rainbow-text-${index}`, `rainbow-background-${index}`,
+]).flat();
+
+function stopCrazyColors() {
+  clearInterval(crazyTimer);
+  crazyTimer = null;
+  for (const element of crazyElements) element.classList.remove(...crazyClasses);
+  crazyElements = [];
+  crazyPresses = 0;
+  crazyButton.textContent = 'Crazy Button';
+  crazyButton.setAttribute('aria-pressed', 'false');
+}
+
+function randomizeCrazyColors() {
+  for (const element of crazyElements) {
+    element.classList.remove(...crazyClasses);
+    element.classList.add(`rainbow-text-${Math.floor(Math.random() * 7)}`);
+    element.classList.add(`rainbow-background-${Math.floor(Math.random() * 7)}`);
+  }
+}
+
+crazyButton.hidden = false;
+crazyButton.addEventListener('click', () => {
+  if (crazyTimer !== null) {
+    stopCrazyColors();
+    return;
+  }
+  crazyPresses += 1;
+  if (crazyPresses === 1) {
+    window.alert(crazyWarning);
+  } else if (crazyPresses === 2) {
+    window.alert(`${crazyWarning}\n\nAre you really sure? This is a bit blinding....`);
+  } else if (reducedMotion.matches) {
+    window.alert('Flashing is disabled because your device requests reduced motion.');
+    stopCrazyColors();
+  } else {
+    // Keep the stop control readable. Color changes never alter the saved theme.
+    crazyElements = [document.body, ...document.body.querySelectorAll('*')]
+      .filter(element => !element.matches('script, .crazy-button'));
+    crazyButton.textContent = 'Stop Crazy Colors';
+    crazyButton.setAttribute('aria-pressed', 'true');
+    crazyTimer = window.setInterval(randomizeCrazyColors, 200);
+  }
+});
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && crazyTimer !== null) stopCrazyColors();
+});
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) stopCrazyColors();
+});
+reducedMotion.addEventListener('change', () => {
+  if (reducedMotion.matches) stopCrazyColors();
+});
+window.addEventListener('pagehide', stopCrazyColors);

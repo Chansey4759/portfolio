@@ -87,6 +87,21 @@ details li { border-radius: .4rem; padding: .35rem .8rem; background: var(--acce
 .contact-list li + li { border-top: 1px solid var(--border); }
 .site-footer { border-top: 1px solid var(--border); padding: 1.5rem; color: var(--muted); font-size: .85rem; }
 .footer-inner { max-width: 1032px; margin: auto; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.crazy-button { display: block; margin: 1rem 0 0 auto; font-size: .75rem; position: relative; z-index: 1; }
+.rainbow-text-0 { color: #ff0000 !important; }
+.rainbow-text-1 { color: #ff8800 !important; }
+.rainbow-text-2 { color: #ffff00 !important; }
+.rainbow-text-3 { color: #00dd44 !important; }
+.rainbow-text-4 { color: #0088ff !important; }
+.rainbow-text-5 { color: #4b0082 !important; }
+.rainbow-text-6 { color: #cc33ff !important; }
+.rainbow-background-0 { background: #ff0000 !important; }
+.rainbow-background-1 { background: #ff8800 !important; }
+.rainbow-background-2 { background: #ffff00 !important; }
+.rainbow-background-3 { background: #00dd44 !important; }
+.rainbow-background-4 { background: #0088ff !important; }
+.rainbow-background-5 { background: #4b0082 !important; }
+.rainbow-background-6 { background: #cc33ff !important; }
 @media (min-width: 960px) {
   .header-inner { flex-wrap: nowrap; }
   nav { width: auto; }
