@@ -35,6 +35,8 @@ Until the owner chooses another design, use a clean, readable portfolio with gen
 - Keep the header, navigation, footer, spacing, colors, and typography consistent across pages.
 - Put all styling in `styles.css`; no inline styles or page-specific `<style>` blocks. Use CSS custom properties for shared colors and spacing.
 - Keep animations subtle and respect `prefers-reduced-motion`.
+- The five portfolio pages share root-level `styles.css` and `script.js`. Theme colors use CSS custom properties, follow the system preference by default, and can be overridden with a saved light/dark choice. Use the shared card, header, navigation, and footer patterns for new content.
+- Leave the existing calculator and all files inside `projects/Centurion-Showdown-Coding-services-/` unchanged unless the owner explicitly requests calculator changes. Its separate design is intentional.
 
 ## HTML, accessibility, and JavaScript
 

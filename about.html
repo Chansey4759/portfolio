@@ -4,33 +4,44 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Me | Thomas Peters</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <a href="#main-content">Skip to main content</a>
-  <header>
-    <nav aria-label="Main navigation">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html"><span aria-hidden="true">TP</span>Thomas Peters</a>
+      <button class="theme-toggle" type="button" hidden>Dark mode</button>
+      <button class="menu-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" hidden>Menu</button>
+    <nav id="main-navigation" aria-label="Main navigation">
       <a href="index.html">Home</a>
       <a href="about.html" aria-current="page">About Me</a>
       <a href="projects.html">Projects</a>
       <a href="skills.html">Skills</a>
       <a href="contact.html">Contact</a>
     </nav>
+    </div>
   </header>
   <main id="main-content" tabindex="-1">
+    <p class="eyebrow">The person behind the work</p>
     <h1>About Me</h1>
     <p>This page introduces Thomas Peters, an NJIT freshman in 2026, and his work!</p>
-    <section aria-labelledby="background-heading">
+    <div class="card-grid">
+    <section class="card" aria-labelledby="background-heading">
       <h2 id="background-heading">Background</h2>
       <p>Thomas wants to become an expert in the field of mechanical engineering technology.</p>
     </section>
-    <section aria-labelledby="education-heading">
+    <section class="card" aria-labelledby="education-heading">
       <h2 id="education-heading">Education</h2>
       <p>Thomas is a freshman at the New Jersey Institute of Technology (NJIT) in 2026.</p>
     </section>
-    <section aria-labelledby="interests-heading">
+    <section class="card" aria-labelledby="interests-heading">
       <h2 id="interests-heading">Interests</h2>
       <p>Thomas also enjoys video games, an interest reflected in his projects.</p>
     </section>
+    </div>
   </main>
+  <footer class="site-footer"><div class="footer-inner"><span>Thomas Peters · Portfolio</span><a href="contact.html">Let's connect ↗</a></div></footer>
 </body>
 </html>

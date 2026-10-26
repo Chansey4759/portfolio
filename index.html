@@ -4,26 +4,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Thomas Peter’s Portfolio!</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <a href="#main-content">Skip to main content</a>
-  <header>
-    <nav aria-label="Main navigation">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html"><span aria-hidden="true">TP</span>Thomas Peters</a>
+      <button class="theme-toggle" type="button" hidden>Dark mode</button>
+      <button class="menu-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" hidden>Menu</button>
+    <nav id="main-navigation" aria-label="Main navigation">
       <a href="index.html" aria-current="page">Home</a>
       <a href="about.html">About Me</a>
       <a href="projects.html">Projects</a>
       <a href="skills.html">Skills</a>
       <a href="contact.html">Contact</a>
     </nav>
+    </div>
   </header>
   <main id="main-content" tabindex="-1">
+    <p class="eyebrow">Welcome to my portfolio</p>
     <header>
       <h1>Thomas Peter’s Portfolio!</h1>
     </header>
+    <div class="home-links">
     <p><a href="about.html">About Me — learn about my background, education, and interests</a></p>
     <p><a href="projects.html">Projects -- View my personal projects I have created!</a></p>
     <p><a href="skills.html">Skills -- Learn about what I can do!</a></p>
     <p><a href="contact.html">Contact -- Come say hello!</a></p>
+    </div>
   </main>
+  <footer class="site-footer"><div class="footer-inner"><span>Thomas Peters · Portfolio</span><a href="contact.html">Let's connect ↗</a></div></footer>
 </body>
 </html>
