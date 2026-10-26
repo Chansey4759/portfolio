@@ -1,11 +1,6 @@
 // Theme preferences are shared between the five portfolio pages.
 const themeToggle = document.querySelector('.theme-toggle');
 const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
-let savedTheme = null;
-try { savedTheme = localStorage.getItem('portfolio-theme'); } catch { /* Storage can be unavailable. */ }
-if (savedTheme === 'light' || savedTheme === 'dark') {
-  document.documentElement.dataset.theme = savedTheme;
-}
 function updateThemeButton() {
   const dark = document.documentElement.dataset.theme
     ? document.documentElement.dataset.theme === 'dark'
@@ -22,7 +17,8 @@ themeToggle.addEventListener('click', () => {
     : systemTheme.matches;
   const theme = dark ? 'light' : 'dark';
   document.documentElement.dataset.theme = theme;
-  try { localStorage.setItem('portfolio-theme', theme); } catch { /* The toggle still works without storage. */ }
+  try { localStorage.setItem('portfolio-theme', theme); } catch { /* Session storage is a fallback. */ }
+  try { sessionStorage.setItem('portfolio-theme', theme); } catch { /* The current page still changes if storage is blocked. */ }
   updateThemeButton();
 });
 
