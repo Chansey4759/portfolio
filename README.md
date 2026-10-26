@@ -8,6 +8,8 @@ To view locally, open `index.html` in a browser or use VS Code Live Preview.
 
 ## Design and controls
 
+The homepage is a four-chapter scrolling journey through About, Projects, Skills, and Contact. A desktop route guide highlights the current chapter and updates a progress indicator through `journey.js`. Chapter links jump within the homepage, and each chapter links to its full page. Scrolling is never locked or intercepted. Content stays visible without JavaScript, and smooth scrolling only applies when reduced motion is not requested.
+
 All five portfolio pages share `styles.css` and `script.js`. Edit the color custom properties to adjust the light and dark palettes. The theme follows the system setting until the visitor chooses Light mode or Dark mode; their choice is saved when browser storage is available. The mobile Menu button opens the navigation, and Escape closes it. Navigation remains visible without JavaScript. Skills groups use native HTML expand/collapse controls.
 
 The calculator retains its original design and code independently of the portfolio theme.

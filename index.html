@@ -5,8 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Thomas Peter’s Portfolio!</title>
   <script src="theme.js?v=3"></script>
-  <link rel="stylesheet" href="styles.css?v=8">
+  <link rel="stylesheet" href="styles.css?v=9">
   <script src="script.js?v=8" defer></script>
+  <script src="journey.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -24,20 +25,92 @@
     </nav>
     </div>
   </header>
-  <main id="main-content" tabindex="-1">
-    <p class="eyebrow">Welcome to my portfolio</p>
-    <header>
+  <main class="journey-main" id="main-content" tabindex="-1">
+    <header class="journey-intro">
+      <p class="eyebrow">A portfolio in four chapters</p>
       <h1>Thomas Peter’s Portfolio!</h1>
+      <p class="journey-lead">An engineering mindset.<br>A creative streak.<br>A story worth exploring.</p>
+      <p>Meet Thomas Peters, an NJIT freshman in 2026 with an interest in mechanical engineering technology and video games.</p>
+      <a class="project-action" href="#chapter-about">Begin the adventure <span aria-hidden="true">↓</span></a>
+      <figure class="page-photo journey-cover">
+        <img src="assets/images/home-engineering.jpg" alt="A red mechanical gear and pliers on a workbench" width="1200" height="600">
+        <figcaption>Engineering inspiration · <a href="https://www.pexels.com/photo/close-up-photo-of-pliers-beside-a-gear-9242914/">Photo: Pexels</a></figcaption>
+      </figure>
+      <p class="journey-hint">Scroll to explore. Take any chapter at your own pace.</p>
     </header>
-    <figure class="page-photo">
-      <img src="assets/images/home-engineering.jpg" alt="Red mechanical gear beside green-handled pliers on a workbench" width="1200" height="600" decoding="async">
-      <figcaption>Photo inspiration · <a href="https://www.pexels.com/photo/close-up-photo-of-pliers-beside-a-gear-9242914/">Source: Pexels</a></figcaption>
-    </figure>
-    <div class="home-links">
-    <p><a href="about.html">About Me — learn about my background, education, and interests</a></p>
-    <p><a href="projects.html">Projects -- View my personal projects I have created!</a></p>
-    <p><a href="skills.html">Skills -- Learn about what I can do!</a></p>
-    <p><a href="contact.html">Contact -- Come say hello!</a></p>
+    <div class="journey-layout">
+      <aside class="journey-map" aria-label="Adventure guide">
+        <p class="eyebrow">Your route</p>
+        <ol>
+          <li><a href="#chapter-about" data-chapter-link="chapter-about">01 <span>The beginning</span></a></li>
+          <li><a href="#chapter-projects" data-chapter-link="chapter-projects">02 <span>The playground</span></a></li>
+          <li><a href="#chapter-skills" data-chapter-link="chapter-skills">03 <span>The toolkit</span></a></li>
+          <li><a href="#chapter-contact" data-chapter-link="chapter-contact">04 <span>The next hello</span></a></li>
+        </ol>
+        <label class="journey-progress-label" for="journey-progress">Journey progress</label>
+        <progress id="journey-progress" max="4" value="0">0 of 4 chapters</progress>
+      </aside>
+      <div class="journey-chapters">
+        <section class="story-step" id="chapter-about" aria-labelledby="story-about-heading">
+          <figure class="page-photo story-photo">
+            <img src="assets/images/about-study.jpg" alt="Notebooks and a pencil arranged on a study desk" width="1200" height="600" loading="lazy">
+            <figcaption><a href="https://www.pexels.com/photo/notebooks-on-a-desk-5124877/">Photo: Pexels</a></figcaption>
+          </figure>
+          <div class="story-copy">
+            <p class="eyebrow">01 / The beginning</p>
+            <h2 id="story-about-heading">Every adventure starts with curiosity.</h2>
+            <p>For Thomas, that means exploring how things work. As an NJIT freshman in 2026, he wants to become an expert in mechanical engineering technology.</p>
+            <p>There is also room for play: video games are part of the story, too.</p>
+            <a class="project-action" href="about.html">About Me — explore my background <span aria-hidden="true">↗</span></a>
+          </div>
+        </section>
+        <section class="story-step" id="chapter-projects" aria-labelledby="story-projects-heading">
+          <figure class="page-photo story-photo">
+            <img src="assets/images/projects-gaming.jpg" alt="Hands playing with a black game controller" width="1200" height="600" loading="lazy">
+            <figcaption><a href="https://www.pexels.com/photo/person-holding-a-black-game-controller-7855652/">Photo: Pexels</a></figcaption>
+          </figure>
+          <div class="story-copy">
+            <p class="eyebrow">02 / The playground</p>
+            <h2 id="story-projects-heading">Where play meets problem solving.</h2>
+            <p>Centurion Showdown brings those interests together in a damage calculator. Enter attack and defense stats, choose elements, and explore the result.</p>
+            <p>Visit the Projects page for the calculator and the spaces reserved for future projects.</p>
+            <a class="project-action" href="projects.html">Projects — see what I have created <span aria-hidden="true">↗</span></a>
+            <a class="story-secondary" href="projects/Centurion-Showdown-Coding-services-/">Try the calculator</a>
+          </div>
+        </section>
+        <section class="story-step" id="chapter-skills" aria-labelledby="story-skills-heading">
+          <figure class="page-photo story-photo">
+            <img src="assets/images/skills-workshop.jpg" alt="A creative workbench with tools and a light bulb" width="1200" height="600" loading="lazy">
+            <figcaption><a href="https://www.pexels.com/photo/tools-on-desk-in-workplace-5963135/">Photo: Pexels</a></figcaption>
+          </figure>
+          <div class="story-copy">
+            <p class="eyebrow">03 / The toolkit</p>
+            <h2 id="story-skills-heading">More than a single kind of strength.</h2>
+            <p>Creative thinking, fast calculations, and hands-on ability are part of Thomas’s toolkit. Supportiveness, empathy, and resilience matter just as much.</p>
+            <ul class="story-tags"><li>Creative</li><li>Handy</li><li>Empathetic</li><li>Resilient</li></ul>
+            <a class="project-action" href="skills.html">Skills — learn what I can do <span aria-hidden="true">↗</span></a>
+          </div>
+        </section>
+        <section class="story-step" id="chapter-contact" aria-labelledby="story-contact-heading">
+          <figure class="page-photo story-photo">
+            <img src="assets/images/contact-workspace.jpg" alt="Hands typing on a laptop at a desk" width="1200" height="600" loading="lazy">
+            <figcaption><a href="https://www.pexels.com/photo/a-desk-workspace-5186349/">Photo: Pexels</a></figcaption>
+          </figure>
+          <div class="story-copy">
+            <p class="eyebrow">04 / The next hello</p>
+            <h2 id="story-contact-heading">The next chapter starts with a conversation.</h2>
+            <p>You have met the person, explored a project, and opened the toolkit. Come say hello by email or find Thomas on Discord.</p>
+            <a class="project-action" href="contact.html">Contact — come find me here <span aria-hidden="true">↗</span></a>
+            <a class="story-secondary" href="mailto:Thomas90827@gmail.com">Thomas90827@gmail.com</a>
+          </div>
+        </section>
+      </div>
+    </div>
+    <div class="journey-ending">
+      <p class="eyebrow">Adventure complete. Curiosity continues.</p>
+      <h2>Pick a path. Keep exploring.</h2>
+      <p>Use the navigation to take a closer look, or return to the beginning.</p>
+      <a href="#main-content">Back to the start ↑</a>
     </div>
   </main>
   <footer class="site-footer"><div class="footer-inner"><span>Thomas Peters · Portfolio</span><a href="contact.html">Let's connect ↗</a></div><button class="crazy-button" type="button" aria-pressed="false" hidden>Crazy Button</button></footer>

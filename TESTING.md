@@ -26,6 +26,12 @@ Live site: https://chansey4759.github.io/portfolio/
 
 ## Fix and retest log
 
+### Homepage journey
+
+Local Edge checks passed at 390px and 1280px: four chapters, no horizontal overflow in light and dark themes, route guide tracks Contact, progress reaches chapter four, all four full-page links exist, Crazy mode wraps story text, and stopping restores it. Flashing timer was intercepted. Desktop screenshot visually inspected. Live checks, manual Tab/Enter traversal, and reduced-motion browser emulation remain Not run.
+
+Retest by scrolling forward and backward through each chapter, selecting route links and full-page links, and checking guide highlighting and progress. Disable JavaScript to confirm the story and links remain available. Enable reduced motion to confirm smooth scrolling is disabled.
+
 ### Crazy Button checks
 
 Photo update: local Edge checks passed on all five portfolio pages for image loading, nonempty alt text, no horizontal overflow at 390px, hue filters during Crazy mode, and filter removal on stop. Tests intercepted the flashing timer and invoked one tick. All five photos were visually inspected and are below 105 KB. Live-site and laptop visual checks for this update remain Not run.
