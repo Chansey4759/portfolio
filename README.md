@@ -16,6 +16,8 @@ All five portfolio pages share `styles.css` and `script.js`. Edit the color cust
 
 The calculator retains its original design and code independently of the portfolio theme.
 
+Crazy Button 2 opens a canvas physics playground: page words and pictures fall under gravity and stack against the viewport floor and each other. Restore page or Escape returns the original page and focus. Resizing, hiding the tab, or navigating away also restores it. The effect respects reduced motion and stops Crazy Colors before starting. The canvas is a temporary visual simulation; the original page and links stay intact underneath. Physics uses local `physics.js`, with no dependencies or backend.
+
 Each portfolio footer also has a Crazy Button. The first two presses show warnings; the third starts random rainbow text and background changes every 40ms (25 times per second); individual characters have transparent backgrounds. Stop Crazy Colors or Escape restores the page. The effect stops when the page is hidden and is blocked when reduced motion is requested. It never changes the saved theme or runs in the calculator.
 
 ## Photo credits

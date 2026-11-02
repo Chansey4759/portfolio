@@ -127,7 +127,7 @@ crazyButton.addEventListener('click', () => {
     // Keep the stop control readable. Color changes never alter the saved theme.
     wrapCrazyCharacters();
     crazyElements = [document.body, ...document.body.querySelectorAll('*')]
-      .filter(element => !element.matches('script, .crazy-button, .crazy-text-wrapper'));
+      .filter(element => !element.matches('script, .crazy-button, .physics-button, .crazy-text-wrapper'));
     crazyButton.textContent = 'Stop Crazy Colors';
     crazyButton.setAttribute('aria-pressed', 'true');
     crazyTimer = window.setInterval(randomizeCrazyColors, 40);
@@ -143,3 +143,4 @@ reducedMotion.addEventListener('change', () => {
   if (reducedMotion.matches) stopCrazyColors();
 });
 window.addEventListener('pagehide', stopCrazyColors);
+document.addEventListener('portfolio:stop-colors', stopCrazyColors);

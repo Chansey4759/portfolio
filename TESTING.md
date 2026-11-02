@@ -26,6 +26,12 @@ Live site: https://chansey4759.github.io/portfolio/
 
 ## Fix and retest log
 
+### Crazy Button 2 physics
+
+November 2, 2026: local Edge checks on Contact passed at 390px and 1280px for sandbox activation, inert underlying content, multiple simulated pieces, wall/floor bounds, stacking above the floor, Restore, exact main DOM preservation, email link identity, focus return, Escape, and resize restoration. The test advanced 240 animation frames. Source checks confirm one trigger and the shared physics script on all five portfolio pages, with no calculator changes. Remaining pages' runtime, reduced-motion emulation, Tab trapping with physical keys, hidden-tab behavior, and live checks are Not run.
+
+To retest, activate Crazy Button 2 on each page and observe falling words and pictures collecting at the viewport floor. Use Restore, Escape, resizing, and tab switching in separate runs, checking original links and theme afterward. Enable reduced motion and confirm the animation does not start. Start Crazy Colors first and confirm physics removes the colors before collecting the page.
+
 ### Homepage journey
 
 November 2, 2026 simplification: local Edge checks passed at 390px and 1280px for four chapters, one paragraph and one destination link per chapter, no overflow in light/dark themes, final chapter progress, and programmatic link focus. Source checks preserve the guide, theme controls, and Crazy Button. Full manual Tab/Enter, Lighthouse, and live verification of this revision remain Not run.
