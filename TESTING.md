@@ -28,6 +28,10 @@ Live site: https://chansey4759.github.io/portfolio/
 
 ### Crazy Button 2 physics
 
+Rotation/tilt update: local Edge tests passed at 390px and 1280px for preserving the original heading font size, drawing text without a shrink-to-fit width, nonzero rotations, permission requests after Enable tilt, received orientation data, disabling tilt, denied-permission fallback, and Escape restoration. Additional synthetic tests passed for rightward gravity, reversed vertical gravity, accelerometer-only fallback, and separating overlapping rotated rectangles. These simulate sensors; physical phone, landscape sensor calibration, high-DPI visual inspection, and live tests remain Not run.
+
+Hardware test: on the HTTPS site, activate physics, select Enable tilt, allow access, and tilt right, left, forward, and backward in portrait and landscape. Pieces should follow the screen-relative direction. Test denial, Disable tilt, Restore, Escape, and returning to the playground after a resize. Confirm no ongoing sensor responses after restoring the page.
+
 November 2, 2026: local Edge checks on Contact passed at 390px and 1280px for sandbox activation, inert underlying content, multiple simulated pieces, wall/floor bounds, stacking above the floor, Restore, exact main DOM preservation, email link identity, focus return, Escape, and resize restoration. The test advanced 240 animation frames. Source checks confirm one trigger and the shared physics script on all five portfolio pages, with no calculator changes. Remaining pages' runtime, reduced-motion emulation, Tab trapping with physical keys, hidden-tab behavior, and live checks are Not run.
 
 To retest, activate Crazy Button 2 on each page and observe falling words and pictures collecting at the viewport floor. Use Restore, Escape, resizing, and tab switching in separate runs, checking original links and theme afterward. Enable reduced motion and confirm the animation does not start. Start Crazy Colors first and confirm physics removes the colors before collecting the page.

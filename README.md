@@ -18,6 +18,10 @@ The calculator retains its original design and code independently of the portfol
 
 Crazy Button 2 opens a canvas physics playground: page words and pictures fall under gravity and stack against the viewport floor and each other. Restore page or Escape returns the original page and focus. Resizing, hiding the tab, or navigating away also restores it. The effect respects reduced motion and stops Crazy Colors before starting. The canvas is a temporary visual simulation; the original page and links stay intact underneath. Physics uses local `physics.js`, with no dependencies or backend.
 
+Physics text retains its computed font size, weight, style, and letter spacing; long words split rather than shrink. The canvas uses the device pixel ratio for sharp text. Pieces rotate, with collision tests that follow their rotated outlines.
+
+On supported devices, choose **Enable tilt** inside the playground and grant motion/orientation access if prompted. Tilt steers gravity; **Disable tilt** restores downward gravity. Orientation readings are preferred, with accelerometer data as a fallback and normal gravity when sensors are missing or denied. Sensor access requires a secure context such as the live HTTPS site. Readings are used locally, never stored or sent, and listeners are removed when physics stops. Browser API references: [orientation permission](https://developer.mozilla.org/en-US/docs/Web/API/DeviceOrientationEvent/requestPermission_static), [accelerometer data](https://developer.mozilla.org/en-US/docs/Web/API/DeviceMotionEvent/accelerationIncludingGravity).
+
 Each portfolio footer also has a Crazy Button. The first two presses show warnings; the third starts random rainbow text and background changes every 40ms (25 times per second); individual characters have transparent backgrounds. Stop Crazy Colors or Escape restores the page. The effect stops when the page is hidden and is blocked when reduced motion is requested. It never changes the saved theme or runs in the calculator.
 
 ## Photo credits
