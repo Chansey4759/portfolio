@@ -28,6 +28,8 @@ Live site: https://chansey4759.github.io/portfolio/
 
 ### Homepage journey
 
+November 2, 2026 simplification: local Edge checks passed at 390px and 1280px for four chapters, one paragraph and one destination link per chapter, no overflow in light/dark themes, final chapter progress, and programmatic link focus. Source checks preserve the guide, theme controls, and Crazy Button. Full manual Tab/Enter, Lighthouse, and live verification of this revision remain Not run.
+
 Local Edge checks passed at 390px and 1280px: four chapters, no horizontal overflow in light and dark themes, route guide tracks Contact, progress reaches chapter four, all four full-page links exist, Crazy mode wraps story text, and stopping restores it. Flashing timer was intercepted. Desktop screenshot visually inspected. Live checks, manual Tab/Enter traversal, and reduced-motion browser emulation remain Not run.
 
 Retest by scrolling forward and backward through each chapter, selecting route links and full-page links, and checking guide highlighting and progress. Disable JavaScript to confirm the story and links remain available. Enable reduced motion to confirm smooth scrolling is disabled.
