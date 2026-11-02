@@ -4,10 +4,13 @@ const physicsMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 let physicsStage = null, physicsFrame = null;
 let physicsInertStates = [];
 let stopPhysicsSensors = () => {};
+let stopPhysicsColors = () => {};
 function stopPhysics() {
   if (!physicsStage) return;
   cancelAnimationFrame(physicsFrame); physicsFrame = null;
-  stopPhysicsSensors(); physicsStage.remove(); physicsStage = null;
+  stopPhysicsSensors(); stopPhysicsColors();
+  stopPhysicsSensors = () => {}; stopPhysicsColors = () => {};
+  physicsStage.remove(); physicsStage = null;
   document.body.classList.remove('physics-active');
   for (const [element, inert] of physicsInertStates) element.inert = inert;
   physicsInertStates = [];
@@ -108,7 +111,10 @@ physicsButton.addEventListener('click', () => {
   if (physicsMotion.matches) {
     window.alert('Physics animation is disabled while reduced motion is enabled.'); return;
   }
-  document.dispatchEvent(new Event('portfolio:stop-colors'));
+  // Capture original fonts and word boundaries even if character colors are on.
+  const resumeColors = crazyTimer !== null;
+  const savedColorPresses = crazyPresses;
+  stopCrazyColors();
   const pieces = collectPhysicsPieces();
   const background = getComputedStyle(document.body).backgroundColor;
   const surface = getComputedStyle(document.documentElement).getPropertyValue('--surface');
@@ -129,7 +135,10 @@ physicsButton.addEventListener('click', () => {
   restore.addEventListener('click', stopPhysics);
   const tiltButton = document.createElement('button'); tiltButton.type = 'button';
   tiltButton.textContent = 'Enable tilt'; tiltButton.setAttribute('aria-pressed', 'false');
-  toolbar.append(description, tiltButton, restore); stage.append(canvas, toolbar);
+  const colorButton = document.createElement('button'); colorButton.type = 'button';
+  colorButton.textContent = 'Crazy Button'; colorButton.setAttribute('aria-pressed', 'false');
+  colorButton.addEventListener('click', pressCrazyButton);
+  toolbar.append(description, colorButton, tiltButton, restore); stage.append(canvas, toolbar);
   for (const child of document.body.children) {
     if (child.tagName === 'SCRIPT') continue;
     physicsInertStates.push([child, child.inert]); child.inert = true;
@@ -138,6 +147,47 @@ physicsButton.addEventListener('click', () => {
   physicsButton.setAttribute('aria-pressed', 'true'); restore.focus();
   const context = canvas.getContext('2d'); context.setTransform(ratio, 0, 0, ratio, 0, 0);
   let previous = null, idleTime = 0;
+  let rainbowActive = false, rainbowBackground = background;
+  const rainbowPalette = ['#ff0000', '#ff8800', '#ffff00', '#00dd44', '#0088ff', '#4b0082', '#cc33ff'];
+  const randomRainbow = () => rainbowPalette[Math.floor(Math.random() * rainbowPalette.length)];
+  const rainbowSegmenter = typeof Intl.Segmenter === 'function'
+    ? new Intl.Segmenter(undefined, { granularity: 'grapheme' }) : null;
+  function updatePhysicsColors() {
+    if (!rainbowActive) return;
+    rainbowBackground = randomRainbow();
+    for (const piece of pieces) {
+      piece.rainbowSurface = randomRainbow();
+      piece.rainbowHue = Math.floor(Math.random() * 7) * 50;
+      if (piece.text) {
+        if (!piece.rainbowCharacters) {
+          const characters = rainbowSegmenter
+            ? Array.from(rainbowSegmenter.segment(piece.text), item => item.segment) : Array.from(piece.text);
+          context.font = piece.font; context.letterSpacing = piece.spacing; context.fontKerning = piece.kerning;
+          let prefix = '';
+          piece.rainbowCharacters = characters.map(text => {
+            const character = { text, offset: context.measureText(prefix).width };
+            prefix += text;
+            return character;
+          });
+        }
+        for (const character of piece.rainbowCharacters) character.color = randomRainbow();
+      }
+    }
+    wakePhysics();
+  }
+  function syncPhysicsColors(event) {
+    rainbowActive = event.detail.active;
+    colorButton.textContent = rainbowActive ? 'Stop Crazy Colors' : 'Crazy Button';
+    colorButton.setAttribute('aria-pressed', String(rainbowActive));
+    if (rainbowActive) updatePhysicsColors();
+    else wakePhysics();
+  }
+  document.addEventListener('portfolio:colors-state', syncPhysicsColors);
+  document.addEventListener('portfolio:colors-tick', updatePhysicsColors);
+  stopPhysicsColors = () => {
+    document.removeEventListener('portfolio:colors-state', syncPhysicsColors);
+    document.removeEventListener('portfolio:colors-tick', updatePhysicsColors);
+  };
   let gravity = { x: 0, y: 950 };
   let tiltEnabled = false, receivedOrientation = false, sensorTimer = null;
   function wakePhysics() {
@@ -237,16 +287,27 @@ physicsButton.addEventListener('click', () => {
     if (physicsStage !== stage) return;
     const dt = previous === null ? 0 : Math.min((time - previous) / 1000, 1 / 30);
     previous = time; idleTime += dt; simulate(dt);
-    context.fillStyle = background; context.fillRect(0, 0, sceneWidth, sceneHeight);
+    context.fillStyle = rainbowActive ? rainbowBackground : background;
+    context.fillRect(0, 0, sceneWidth, sceneHeight);
     for (const piece of pieces) {
       context.save(); context.translate(piece.x, piece.y); context.rotate(piece.angle);
-      context.fillStyle = surface; context.fillRect(-piece.w / 2, -piece.h / 2, piece.w, piece.h);
-      if (piece.image) context.drawImage(piece.image, -piece.w / 2, -piece.h / 2, piece.w, piece.h);
+      context.fillStyle = rainbowActive ? piece.rainbowSurface : surface;
+      context.fillRect(-piece.w / 2, -piece.h / 2, piece.w, piece.h);
+      if (piece.image) {
+        if (rainbowActive) context.filter = `hue-rotate(${piece.rainbowHue}deg) saturate(2)`;
+        context.drawImage(piece.image, -piece.w / 2, -piece.h / 2, piece.w, piece.h);
+        context.filter = 'none';
+      }
       else {
         context.font = piece.font; context.letterSpacing = piece.spacing; context.fontKerning = piece.kerning;
         context.textBaseline = 'middle'; context.fillStyle = piece.color;
         // No maxWidth argument: do not shrink or horizontally squeeze page text.
-        context.fillText(piece.text, -piece.w / 2 + 4, 0);
+        if (rainbowActive) {
+          for (const character of piece.rainbowCharacters) {
+            context.fillStyle = character.color;
+            context.fillText(character.text, -piece.w / 2 + 4 + character.offset, 0);
+          }
+        } else context.fillText(piece.text, -piece.w / 2 + 4, 0);
       }
       context.strokeStyle = border; context.strokeRect(-piece.w / 2, -piece.h / 2, piece.w, piece.h);
       context.restore();
@@ -255,6 +316,8 @@ physicsButton.addEventListener('click', () => {
     if (idleTime < 20) physicsFrame = requestAnimationFrame(render);
   }
   physicsFrame = requestAnimationFrame(render);
+  crazyPresses = savedColorPresses;
+  if (resumeColors) startCrazyColors();
 });
 document.addEventListener('keydown', event => {
   if (!physicsStage) return;

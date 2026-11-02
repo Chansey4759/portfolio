@@ -65,6 +65,7 @@ function stopCrazyColors() {
   crazyPresses = 0;
   crazyButton.textContent = 'Crazy Button';
   crazyButton.setAttribute('aria-pressed', 'false');
+  document.dispatchEvent(new CustomEvent('portfolio:colors-state', { detail: { active: false } }));
 }
 
 function randomizeCrazyColors() {
@@ -78,6 +79,7 @@ function randomizeCrazyColors() {
       element.classList.add(`rainbow-image-${Math.floor(Math.random() * 7)}`);
     }
   }
+  document.dispatchEvent(new Event('portfolio:colors-tick'));
 }
 
 function wrapCrazyCharacters() {
@@ -85,7 +87,7 @@ function wrapCrazyCharacters() {
   const textNodes = [];
   while (walker.nextNode()) {
     const node = walker.currentNode;
-    if (node.textContent.trim() && !node.parentElement.closest('script, style, button, textarea, select')) {
+    if (node.textContent.trim() && !node.parentElement.closest('script, style, button, textarea, select, .physics-stage')) {
       textNodes.push(node);
     }
   }
@@ -109,8 +111,21 @@ function wrapCrazyCharacters() {
   }
 }
 
+function startCrazyColors() {
+  // Physics listens for state and color ticks; its controls never flash.
+  wrapCrazyCharacters();
+  crazyElements = [document.body, ...document.body.querySelectorAll('*')]
+    .filter(element => !element.matches('script, .crazy-button, .physics-button, .crazy-text-wrapper')
+      && !element.closest('.physics-stage'));
+  crazyButton.textContent = 'Stop Crazy Colors';
+  crazyButton.setAttribute('aria-pressed', 'true');
+  crazyTimer = window.setInterval(randomizeCrazyColors, 40);
+  document.dispatchEvent(new CustomEvent('portfolio:colors-state', { detail: { active: true } }));
+  randomizeCrazyColors();
+}
+
 crazyButton.hidden = false;
-crazyButton.addEventListener('click', () => {
+function pressCrazyButton() {
   if (crazyTimer !== null) {
     stopCrazyColors();
     return;
@@ -124,15 +139,10 @@ crazyButton.addEventListener('click', () => {
     window.alert('Flashing is disabled because your device requests reduced motion.');
     stopCrazyColors();
   } else {
-    // Keep the stop control readable. Color changes never alter the saved theme.
-    wrapCrazyCharacters();
-    crazyElements = [document.body, ...document.body.querySelectorAll('*')]
-      .filter(element => !element.matches('script, .crazy-button, .physics-button, .crazy-text-wrapper'));
-    crazyButton.textContent = 'Stop Crazy Colors';
-    crazyButton.setAttribute('aria-pressed', 'true');
-    crazyTimer = window.setInterval(randomizeCrazyColors, 40);
+    startCrazyColors();
   }
-});
+}
+crazyButton.addEventListener('click', pressCrazyButton);
 document.addEventListener('keydown', event => {
   if (event.key === 'Escape' && crazyTimer !== null) stopCrazyColors();
 });
