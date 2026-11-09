@@ -6,6 +6,12 @@ Live site: https://chansey4759.github.io/portfolio/
 
 To view locally, open `index.html` in a browser or use VS Code Live Preview.
 
+## Deployment
+
+GitHub Pages publishes through `.github/workflows/pages.yml` on pushes to `main`, or through its manual Run workflow action. Pages settings must use **GitHub Actions** as the source. The runner is pinned to `ubuntu-24.04`; HTML, CSS, JavaScript, assets, and project files are uploaded directly without Jekyll, dependencies, or compilation. Repository documentation and Git history are excluded from the site artifact. No application server or backend is required.
+
+This replaces the managed Pages build after it failed with an internal server error. The accompanying Ubuntu migration notice was informational, not proof of a code error. See [GitHub's runner migration notice](https://github.com/actions/runner-images/issues/14748) and [official static Pages workflow](https://github.com/actions/starter-workflows/blob/main/pages/static.yml).
+
 ## Design and controls
 
 The homepage is a four-chapter scrolling journey through About, Projects, Skills, and Contact. A desktop route guide highlights the current chapter and updates a progress indicator through `journey.js`. Chapter links jump within the homepage, and each chapter links to its full page. Scrolling is never locked or intercepted. Content stays visible without JavaScript, and smooth scrolling only applies when reduced motion is not requested.

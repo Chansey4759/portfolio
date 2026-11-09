@@ -21,7 +21,7 @@ Use real content supplied or approved by the owner. Do not invent personal detai
 - Keep all five HTML pages and one shared external stylesheet (`styles.css`) at the repository root. Put shared JavaScript in `script.js` and images in `assets/images/`.
 - Use relative paths such as `about.html`, `styles.css`, and `assets/images/project.webp` for internal links and assets. Do not use root-relative paths such as `/styles.css`; this site is hosted under `/portfolio/`.
 - Use explicit `.html` links. Do not depend on client-side routing, URL rewrites, or extensionless routes.
-- Publish from the `main` branch and the repository root (`/`). Do not introduce a deployment service or build workflow unless the owner changes the requirements.
+- Publish the root-level static site from `main` using `.github/workflows/pages.yml` and GitHub Pages with its source set to GitHub Actions. This workflow replaces the failing managed Pages build at the owner's request. Keep the runner pinned to `ubuntu-24.04`, package only site files into `_site`, and do not introduce a backend or required local build step.
 - Expected live URL: `https://Chansey4759.github.io/portfolio/`. Verify the actual Pages configuration and live URL before reporting deployment as complete.
 - A contact form cannot send messages on its own. Prefer a clear email link. If a form is requested, validate inputs with JavaScript, explain that it opens the visitor's email application, and never claim a message was sent.
 
