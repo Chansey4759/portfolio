@@ -46,4 +46,4 @@ The Projects page no longer displays the stock gaming banner; the photo remains 
 
 The Projects page includes a local copy of the [Centurion Showdown damage calculator](https://github.com/Chansey4759/Centurion-Showdown-Coding-services-) from source commit `533c4a44f8201a8892ecb2e35046f6a5ff29292f`, hosted at `projects/Centurion-Showdown-Coding-services-/`. Its poster is resized and compressed for the web. The original credits for Isaac's game and Chansey4759's calculator are preserved.
 
-The second project links to this portfolio's homepage. One project slot remains labeled `PLACEHOLDER!!!!!` until its name, content, and link are supplied.
+The second project links to this portfolio's homepage. The third card is a just-for-fun link to Rick Astley's “Never Gonna Give You Up” on YouTube, rather than an original project.
