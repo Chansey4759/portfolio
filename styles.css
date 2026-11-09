@@ -85,6 +85,7 @@ main > p:not(.eyebrow) { max-width: 65ch; color: var(--muted); font-size: 1.1rem
 .placeholder h2 { color: var(--muted); font-size: 1rem; overflow-wrap: anywhere; }
 .featured-project { border-top: 4px solid var(--accent); }
 .project-action { display: inline-flex; gap: 1.5rem; margin-top: 1.5rem; padding: .6rem 1rem; border: 1px solid var(--accent); border-radius: .5rem; background: var(--accent-soft); font-weight: 700; text-decoration: none; }
+.project-credit { display: block; margin-top: .35rem; font-size: .6rem; color: var(--border); }
 .projects-grid .placeholder { display: flex; flex-direction: column; justify-content: center; min-height: 180px; }
 .skill-number { display: inline-block; margin: 0 .5rem; color: var(--accent); font-size: .85rem; letter-spacing: .08em; }
 .skill-groups details[open] { border-color: var(--accent); }
